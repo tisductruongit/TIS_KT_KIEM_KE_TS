@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kiểm Kê Tài Sản TIS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="container main-card">
+        
+        <div class="logo-container">
+            <img id="web-qr-img" src="LOGO-01.png" alt="Logo TIS">
+        </div>
+
+        <h3 class="app-title">KIỂM KÊ TÀI SẢN</h3>
+        
+        <div class="scanner-wrapper">
+            <div id="reader"></div>
+            <div class="scanner-placeholder">
+                <i class="fas fa-camera"></i>
+                <p>Đang bật camera...</p>
+            </div>
+        </div>
+        <div id="camera-status" class="status-text normal">
+            <i class="fas fa-info-circle me-1"></i>Vui lòng cấp quyền camera
+        </div>
+
+        <form id="myForm">
+            <div class="mb-4">
+                <label class="form-label-custom">Mã QR Tài Sản</label>
+                <div class="input-with-icon">
+                    <input type="text" class="form-control form-control-lg qr-input" id="qr_code" name="qr_code" placeholder="Quét mã..." readonly>
+                    <i class="fas fa-qrcode icon-right"></i>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label-custom">Người sử dụng</label>
+                    <input type="text" class="form-control form-control-lg" id="user_name" placeholder="Nhập tên..." required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label-custom">Ngày kiểm kê</label>
+                    <input type="text" class="form-control form-control-lg date-input" id="display_date" disabled>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                 <div class="col-md-6 mb-3">
+                    <label class="form-label-custom">Mã Loại Tài Sản</label>
+                    
+                    <select class="form-select form-select-lg" id="asset_type" required onchange="toggleOtherInput()">
+                        <option value="" selected disabled>-- Chọn mã --</option>
+                        <option value="MH">MH (Màn hình)</option>
+                        <option value="MI">MI (Máy in)</option>
+                        <option value="MM_CHIEU">MM_CHIEU (Máy chiếu)</option>
+                        <option value="MM_QUET-1130N">MM_QUET-1130N</option>
+                        <option value="MT_BANHP-S01">MT_BANHP-S01 (PC Bàn)</option>
+                        <option value="MT_LAPTOP">MT_LAPTOP</option>
+                        <option value="TB_MAY-CC">TB_MAY-CC (Máy chấm công)</option>
+                        <option value="TB_SWITCH-PoE">TB_SWITCH-PoE</option>
+                        <option value="TB_UPS">TB_UPS (Bộ lưu điện)</option>
+                        <option value="TL_TULANH">TL_TULANH (Tủ lạnh)</option>
+                        <option value="MM_MLANH">MM_MLANH (Máy lạnh)</option>
+                        <option value="MM_NLANH-RWF">MM_NLANH-RWF (Máy nóng lạnh)</option>
+                        <option value="KHAC">✏️ KHÁC (Nhập tay...)</option>
+                    </select>
+
+                    <input type="text" class="form-control form-control-lg mt-2" id="asset_type_other" placeholder="Nhập tên loại tài sản..." style="display: none;">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label-custom">Tình trạng</label>
+                    <select class="form-select form-select-lg" id="status" required>
+                        <option value="Tốt">✅ Tốt / Bình thường</option>
+                        <option value="Chậm/Cũ">⚠️ Chậm / Cũ</option>
+                        <option value="Hư hỏng">❌ Hư hỏng / Sửa chữa</option>
+                        <option value="Chờ thanh lý">📦 Chờ thanh lý</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg tis-btn" id="btnSubmit">
+                    <i class="fas fa-save me-2"></i>LƯU THÔNG TIN
+                </button>
+            </div>
+            
+            <div id="message-area" class="mt-3" style="display: none;"></div>
+        </form>
+    </div>
+    
+    <div class="footer-text">© TIS Insurance Broker</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
